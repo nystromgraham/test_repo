@@ -1,0 +1,114 @@
+---
+title: "ENSI222"
+author: "Graham Nystrom"
+date: "2026-02-02"
+output: html_document
+---
+
+# Markdown
+
+Markdown is a way to make fancy documents. 
+Make sure that you "knit" often -- after every major change -- to mitigate errors.
+
+Hashtags are how we make section levels of a document
+
+## Next Level
+### Next Level
+#### Fourth Level
+##### Fifth Level
+
+# Basic Formatting
+
+This is **BOLD.** (That's double asterisks). Or *italics*. or `code`.
+
+ - This is the start of a list. 
+ - Next item 
+ - Next item 
+ - Next item. Make sure you have a space at the end of each item. 
+ 
+ 1. this is a numbered list
+ 2. second item
+ 
+ To add a hyperlink, do `[link text](url)` without backticks.
+ For example, [go here](https://www.sewanee.edu)
+ 
+ To link to sections of your document, do `[link text](#section-name)` without 
+ backticks, with hyphnes for spaces, and everything lower-cased. For example, 
+ [go here](#Next Level).
+ 
+ To add more vertical space between blocks of text, use this "&nbsp;" without 
+ quotes.
+ 
+ &nbsp;
+ 
+ &nbsp;
+ 
+ should be more space now.
+ 
+ **To include an image -- fun!**
+ first put an image inside the folder with your `rmd` file is located
+ Then type `![](full_image_filename_here){width = "50%"}`
+ 
+ ![](../images/Screenshot 2024-11-03 180338.png){width="50%"}
+ 
+ 
+ # RMarkdown 
+ 
+`RMarkdown` is just `Markdown` with `R` code woven in.
+
+You can do R stuff in the same line as text. For example, `r 3+3` will show as 6.
+(It would like like backtick lowercase r, space, then code, then backtick).
+
+You can also do a full multi-line CHUNK of R stuff.:
+ 
+```{r chunk-name }
+#```{r }
+3+3
+#```
+```
+
+
+Settings to control how R chunks appear:
+
+- `eval = TRUE`: which actually runs the code; if `FALSE`, it shows the code but
+doesn't run it. 
+- `echo = TRUE`: which shows the code; if `FALSE`, the code can run without being
+seen.
+- `warnings = FALSE`: which will turn off warnings.
+
+- `fig.cap = "Figure caption"` adds a figure caption.
+-`fig.width = 7` example of figure width
+-`fig.height = 4` example of figure height
+
+
+```{r, eval=FALSE}
+3+3
+```  
+ 
+ 
+```{r, eval=TRUE, echo=FALSE}
+#this will be evaluated but not shown
+4+4
+```
+
+# Bringing in real data
+
+To manually set working directory while building up my Rmarkdown file, just go
+to Session > Set working directory > source file location.
+
+```{r read data, }
+library(readr)
+energy<-read_csv("../data/IRENA data.csv", skip=1)
+```
+```{r explore data, }
+library(dplyr)
+energy %>% names
+energy %>% head
+energy %>% tail
+energy %>% pull(Technology) %>% unique %>% sort
+```
+
+
+ 
+ 
+ 
