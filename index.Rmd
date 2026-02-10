@@ -106,9 +106,28 @@ energy %>% names
 energy %>% head
 energy %>% tail
 energy %>% pull(Technology) %>% unique %>% sort
+energy %>% pull('Country/area') %>% unique
+```
+
+```{r filter dataset, }
+fenergy<- energy %>% 
+  filter(`Country/area` == "United States of America (the)")
+View(fenergy)
+```
+
+```{r plots}
+library(ggplot2)
+library(plotly)
+p<-ggplot(fenergy, 
+       aes(x=Year,
+           y=as.numeric(`Electricity statistics`),
+           fill=Technology))+
+  geom_area()
+
+ggplotly(p)
 ```
 
 
- 
- 
+
+
  
